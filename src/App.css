@@ -1,8 +1,8 @@
 * {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
@@ -10,7 +10,6 @@ html {
 }
 
 body {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #e8f7f0;
+    /* background-color: #121212;
+    color: floralwhite; */
 }

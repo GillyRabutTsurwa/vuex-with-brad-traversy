@@ -1,45 +1,34 @@
 <template>
   <div id="app">
-    <img class="logo" alt="Vue logo" src="./assets/logo.png" />
-    <div class="container">
-      <Todos />
-    </div>
+    <img src="./assets/img/vuex-logo.png" class="logo" alt="Vuex logo">
+    <Bienvenue msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import Todos from "./components/Todos";
+import Bienvenue from './components/Bienvenue.vue'
+
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    Todos: Todos
+    Bienvenue: Bienvenue
   }
-};
+}
 </script>
 
 <style>
-@import "./App.css";
+@import url(./App.css);
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px; */
-  font-size: 1.6rem;
+  margin-top: 60px;
 }
 
 .logo {
-  position: fixed;
-  top: 0.5em;
-  left: 0.5em;
-  height: 2em;
-}
-
-.container {
-  max-width: 110rem;
-  margin: auto;
-  overflow: auto;
-  padding: 0 5rem;
+  width: 35rem;
 }
 </style>
