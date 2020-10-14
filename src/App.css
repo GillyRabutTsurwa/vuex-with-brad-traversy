@@ -1,15 +1,17 @@
 * {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    /* background-color: #121212;
-    color: floralwhite; */
+  /* background-color: #121212;
+	color: floralwhite; */
+  line-height: 1.6;
+  background: #e8f7f0;
 }
