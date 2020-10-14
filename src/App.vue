@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/img/vuex-logo.png" class="logo" alt="Vuex logo">
-    <Bienvenue msg="Welcome to Your Vue.js App"/>
+    <TodosList/>
   </div>
 </template>
 
 <script>
-import Bienvenue from './components/Bienvenue.vue'
+import TodosList from './components/TodosList.vue'
 
 export default {
   name: 'App',
   components: {
-    Bienvenue: Bienvenue
+    TodosList: TodosList
   }
 }
 </script>
