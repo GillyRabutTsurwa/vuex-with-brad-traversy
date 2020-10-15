@@ -18,7 +18,7 @@ export default {
     },
   },
   /** NOTE:
-   * Du même façon, actions are accessed using METHODS in vue. On va utiliser mapActions plus tard
+   * du même façon, actions are accessed using METHODS in vue. On va utiliser mapActions plus tard
    */
   methods: {
     getTodos() {
