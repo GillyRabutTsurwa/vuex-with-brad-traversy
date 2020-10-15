@@ -2,7 +2,8 @@
   <div>
     <h3>Todos</h3>
     <div class="todo-list">
-      <div v-for="currentTodo in allTodos" v-bind:key="currentTodo.id" class="todo-list__todo">
+      <!-- NOTE: simply rendering our list of todos -->
+      <div v-for="currentTodo in allTodosArr" v-bind:key="currentTodo.id" class="todo-list__todo">
         {{currentTodo.title}}
       </div>
     </div>
@@ -10,12 +11,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "TodosList",
-  computed: mapGetters(["allTodos"]),
+  /** NOTE:
+   * getters are accessed using the computed property.
+   * we are not using mapGetters yet. On va l'utiliser vers la fin de la création de l'appli.
+   */
+  computed: {
+    allTodosArr() {
+      return this.$store.getters.allTodos;
+    },
+  },
   created() {
-    console.log(this.allTodos);
+    console.log(this.allTodosArr);
   },
 };
 </script>
