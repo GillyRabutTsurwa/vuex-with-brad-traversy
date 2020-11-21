@@ -7,9 +7,9 @@ Vue.use(Vuex);
 
 // Create store
 const store = new Vuex.Store({
-	modules: {
-		todos: todos
-	}
+  modules: {
+    todos: todos,
+  },
 });
 
 // Export the store where we will use in the app entry point, main.js
