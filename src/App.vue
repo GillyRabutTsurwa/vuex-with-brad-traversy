@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <div class="container">
-      <p>Je suis arrêté à 26:35</p>
+      <AddTodoForm />
       <TodosList />
     </div>
   </div>
 </template>
 
 <script>
+import AddTodoForm from "./components/AddTodoForm";
 import TodosList from "./components/TodosList.vue";
 export default {
   name: "App",
   components: {
+    AddTodoForm: AddTodoForm,
     TodosList: TodosList,
   },
 };
