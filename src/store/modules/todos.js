@@ -26,19 +26,14 @@ const actions = {
     context.commit("setTodos", data);
   },
 
-  //NEW:
+  //NEW: This is the action for adding a new todo via using our form
   async addTodo(context, title) {
     const response = await axios.post("https://jsonplaceholder.typicode.com/todos", {
-      //IDEA: on configure le id du nouveau poste de todo pour ne plus afficher cette erreur des clées dupliquées
-      //FAIL: id: Math.random(), ca marche pas. L'erreur persiste pour le moment
-      // C'est pas grave du tout. On avance.
-      id: Math.random() * 10000000,
       title: title,
       completed: false,
     });
     const data = response.data;
     console.log(data);
-    console.log(data.id);
     context.commit("newTodo", data);
   },
 };

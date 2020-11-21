@@ -21,10 +21,13 @@ export default {
   methods: {
     //NEW:
     /** IMPORTANT:
-     * When you add more than one todo, you will get an error in the console saying duplicate keys. On peut l'ignorer parce que on gere des données qui persistent pas. Donc lorsqu'on refrait le page, les todo qu'on a créée vont disparaitre
+     * When you add more than one todo, you will get an error in the console saying duplicate keys. On peut l'ignorer parce que on gere des données qui persistent pas. Donc lorsqu'on refrait le page, les todo qu'on a créée vont disparaitre.
+     * Peut-être il arrivera un jour ou je peux le faire durer avec le backend. Mais pour le moment, on avance.
      */
     addNewTodo() {
       this.$store.dispatch("addTodo", this.title);
+      // Clear the input field
+      this.title = "";
     },
   },
 };
