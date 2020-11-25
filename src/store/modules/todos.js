@@ -13,8 +13,10 @@ const getters = {
 
 const mutations = {
   setTodos: (state, todosPayLoad) => (state.todos = todosPayLoad),
-  //NEW:
   newTodo: (state, newTodoPayLoad) => (state.todos = [newTodoPayLoad, ...state.todos]),
+  //NEW:
+  removeTodo: (state, todoIdPayload) =>
+    (state.todos = state.todos.filter((currentTodo) => currentTodo.id !== todoIdPayload)),
 };
 
 const actions = {
@@ -26,7 +28,6 @@ const actions = {
     context.commit("setTodos", data);
   },
 
-  //NEW: This is the action for adding a new todo via using our form
   async addTodo(context, title) {
     const response = await axios.post("https://jsonplaceholder.typicode.com/todos", {
       title: title,
@@ -35,6 +36,12 @@ const actions = {
     const data = response.data;
     console.log(data);
     context.commit("newTodo", data);
+  },
+
+  // NEW: Delete todo
+  async deleteTodo(context, id) {
+    await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
+    context.commit("removeTodo", id);
   },
 };
 
