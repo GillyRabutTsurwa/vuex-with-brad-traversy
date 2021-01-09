@@ -1,7 +1,6 @@
 <template>
   <div>
     <h3>Todos</h3>
-    <h4>Arrêté à 40:10</h4>
     <div class="todo-list">
       <div v-for="currentTodo in allTodosArr" v-bind:key="currentTodo.id" class="todo-list__todo">
         {{currentTodo.title.charAt(0).toUpperCase() + currentTodo.title.slice(1)}}
@@ -54,6 +53,7 @@ export default {
   border-radius: 0.5rem;
   text-align: center;
   cursor: pointer;
+  padding: 2rem;
 }
 
 i {

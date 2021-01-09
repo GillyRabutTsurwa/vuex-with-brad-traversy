@@ -2,6 +2,7 @@
   <div id="app">
     <div class="container">
       <AddTodoForm />
+      <TodosFilter />
       <TodosList />
     </div>
   </div>
@@ -9,11 +10,13 @@
 
 <script>
 import AddTodoForm from "./components/AddTodoForm";
+import TodosFilter from "./components/TodosFilter";
 import TodosList from "./components/TodosList.vue";
 export default {
   name: "App",
   components: {
     AddTodoForm: AddTodoForm,
+    TodosFilter: TodosFilter,
     TodosList: TodosList,
   },
 };

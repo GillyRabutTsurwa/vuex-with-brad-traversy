@@ -38,10 +38,31 @@ const actions = {
     context.commit("newTodo", data);
   },
 
-  // NEW: Delete todo
   async deleteTodo(context, id) {
     await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
     context.commit("removeTodo", id);
+  },
+
+  //NEW: Filter todos. this will just be another get request but with a limit
+  async filterTodos(context, e) {
+    /**
+     * TESTING: these lines of console.log() were to see how Brad goes about deriving out the value of a selected option. What we need is the last line, but feel free to uncomment these logs to see what's going on:
+     *
+     * console.dir(e.target);
+     * console.log(e.target.options);
+     * console.dir(e.target.options[e.target.options.selectedIndex]);
+     * console.log(e.target.options[e.target.options.selectedIndex].value);
+     */
+
+    const limit = e.target.options[e.target.options.selectedIndex].value;
+    console.log(limit, typeof limit);
+
+    // for brad, limit is a number, but for me, it is a string. It seems to work fine without any problems, donc je vais le laisser
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`);
+
+    const data = response.data;
+
+    context.commit("setTodos", data);
   },
 };
 
