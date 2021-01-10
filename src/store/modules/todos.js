@@ -14,9 +14,19 @@ const getters = {
 const mutations = {
   setTodos: (state, todosPayLoad) => (state.todos = todosPayLoad),
   newTodo: (state, newTodoPayLoad) => (state.todos = [newTodoPayLoad, ...state.todos]),
-  //NEW:
   removeTodo: (state, todoIdPayload) =>
     (state.todos = state.todos.filter((currentTodo) => currentTodo.id !== todoIdPayload)),
+  // NEW: updating todo
+  mettreAJourTodo: (state, updatedTodoPayload) => {
+    // we need the index of the updated todo
+    const updatedTodoIndex = state.todos.findIndex((currentTodo) => currentTodo.id === updatedTodoPayload.id);
+    console.log(updatedTodoIndex);
+    // check if the index exists
+    if (updatedTodoIndex !== -1) {
+      // replace the todo in this index (and only this one) with the updated todo
+      state.todos.splice(updatedTodoIndex, 1, updatedTodoPayload);
+    }
+  },
 };
 
 const actions = {
@@ -43,17 +53,7 @@ const actions = {
     context.commit("removeTodo", id);
   },
 
-  //NEW: Filter todos. this will just be another get request but with a limit
   async filterTodos(context, e) {
-    /**
-     * TESTING: these lines of console.log() were to see how Brad goes about deriving out the value of a selected option. What we need is the last line, but feel free to uncomment these logs to see what's going on:
-     *
-     * console.dir(e.target);
-     * console.log(e.target.options);
-     * console.dir(e.target.options[e.target.options.selectedIndex]);
-     * console.log(e.target.options[e.target.options.selectedIndex].value);
-     */
-
     const limit = e.target.options[e.target.options.selectedIndex].value;
     console.log(limit, typeof limit);
 
@@ -63,6 +63,13 @@ const actions = {
     const data = response.data;
 
     context.commit("setTodos", data);
+  },
+
+  // NEW: updating a todo
+  async updateTodo(context, updatedTodo) {
+    // for this one, we are using a put request to update our desired todo
+    const response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${updatedTodo.id}`, updatedTodo);
+    context.commit("mettreAJourTodo", response.data);
   },
 };
 

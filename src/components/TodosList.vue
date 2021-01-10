@@ -1,8 +1,18 @@
 <template>
   <div>
     <h3>Todos</h3>
+    <div class="legend">
+      <span>Double click to mark as complete</span>
+      <span>
+        <span class="incomplete-box"></span> = Incomplete
+      </span>
+      <span>
+        <span class="complete-box"></span> = Complete
+      </span>
+    </div>
+
     <div class="todo-list">
-      <div v-for="currentTodo in allTodosArr" v-bind:key="currentTodo.id" class="todo-list__todo">
+      <div @dblclick="onDoubleClick(currentTodo)" v-for="currentTodo in allTodosArr" v-bind:key="currentTodo.id" v-bind:class="{'is-complete': currentTodo.completed}" class="todo-list__todo">
         {{currentTodo.title.charAt(0).toUpperCase() + currentTodo.title.slice(1)}}
         <!-- The one above est si je veux le majusculer la phrase. Mais c'est trop -->
         <!-- {{currentTodo.title}} -->
@@ -25,11 +35,24 @@ export default {
    */
   methods: {
     getTodos() {
-      // NOTENEWIMPORTANT: actions are triggered using the dispatch().
       this.$store.dispatch("fetchTodos");
     },
     supprimerTodo(id) {
       this.$store.dispatch("deleteTodo", id);
+    },
+    //NEW: function that runs when we double click  a todo
+    onDoubleClick(todo) {
+      //NOTE: we are making a new todo out of the existing todo object
+      const updatedTodo = {
+        // id stays the same
+        id: todo.id,
+        // le titre aussi
+        title: todo.title,
+        // mais on change la valeur de "completed". elle sera son inverse.
+        completed: !todo.completed,
+      };
+      // then we are executing the store action with our new updated todo as our arguement
+      this.$store.dispatch("updateTodo", updatedTodo);
     },
   },
   created() {
@@ -62,5 +85,34 @@ i {
   right: 1rem;
   color: #fff;
   cursor: pointer;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+.complete-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #35495e;
+}
+.incomplete-box {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #41b883;
+}
+
+.is-complete {
+  background: #35495e;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .todos {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
